@@ -1,8 +1,9 @@
 import mongoose, { Schema } from "mongoose";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { userInterface } from "../interface/model.interface";
 
-const userSchema = new mongoose.Schema({
+const userSchema : mongoose.Schema<userInterface> = new mongoose.Schema({
     username : {
         type : String,
         required : true,
@@ -89,4 +90,9 @@ userSchema.methods.genrateRfreshToken = function(){
     )
 }
 
-export const User = mongoose.Model("User" , userSchema); 
+const User = mongoose.model("User", userSchema);
+
+export default User;
+
+
+
